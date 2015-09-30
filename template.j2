@@ -1,0 +1,16 @@
+#jinja2:lstrip_blocks: True
+interfaces {
+{% for iface in host_ports | bracket_expansion %}
+    {{ iface }} {
+        flexible-vlan-tagging;
+        {% for ifl in range(ports_ifl_start,ports_ifl_end) %}
+        unit {{ ifl }}  {
+            vlan-id {{ ifl }};
+            family inet {
+                {% set ifname = iface ~ '.' ~ ifl %}
+                address {{ port_ip_map[ifname] }}; 
+            }
+        }
+        {% endfor %}
+    }
+{% endfor %}
