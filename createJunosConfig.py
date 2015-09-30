@@ -65,7 +65,7 @@ template = jenv.get_template("template.j2")
 
 print template.render(datavars)
 
-#dev = Device(host='s3bu-tme-qfx5200-1.englab.juniper.net', user='mpergament' )
+#dev = Device(host='devicename', user='mpergament' )
 #dev.open()
 
 #pprint( dev.facts )
